@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -8,11 +10,12 @@ public class Menu {
     private Exams exams = new Exams();
     private Attendance attendance;
     private Scanner sc1 = new Scanner(System.in);
+    private Scanner sc2 = new Scanner(System.in);
     private String firstName;
     private String lastName;
     private String className;
     private String exit;
-    private String warningMessage;
+    private List<String> warningMessage = new ArrayList<String>();
     private String anotherGrade;
     private int yearOfClass;
     private int age;
@@ -73,7 +76,7 @@ public class Menu {
     private void setWarningMessage(){
 
         System.out.println("Please type warning message: ");
-        warningMessage = sc1.next();
+        warningMessage.add(sc2.nextLine());
         warning = new Warning(warningMessage);
     }
 
@@ -104,18 +107,19 @@ public class Menu {
         switchNumber = sc1.nextInt();
     }
 
-    private void examGrade(){
+    private void examGrade() {
         System.out.println("Please add exam grade: ");
-        examGrade = sc1.nextDouble();
-        exams.addExamGrade(examGrade);
-        System.out.println("Do you want add another grade: yes/no");
-        anotherGrade = sc1.next();
-        if (anotherGrade.equals("yes")) {
-            flag = false;
-        } else {
-            flag = true;
-        }
+            examGrade = sc1.nextDouble();
+            exams.addExamGrade(examGrade);
+            System.out.println("Do you want add another grade: yes/no");
+            anotherGrade = sc1.next();
+            if (anotherGrade.equals("yes")) {
+                flag = false;
+            } else {
+                flag = true;
+            }
     }
+
 
     private void testGrade(){
         System.out.println("Please add test grade: ");
@@ -189,14 +193,14 @@ public class Menu {
         System.out.println("Exam grade: "+ examGrade + " test grade: " + testGrade + " answer grade: " + answerGrade);
         System.out.println(student);
         if (attendanceFlag){
-            System.out.println("Student " + student.getFirstName() +  " " + student.getLastName() + " attended");
+            System.out.println("Student: " + student.getFirstName() +  " " + student.getLastName() + " attended");
         } else {
-            System.out.println("Student " + student.getFirstName() + " " + student.getLastName() + " has no attended");
+            System.out.println("Student: " + student.getFirstName() + " " + student.getLastName() + " has no attended");
         }
-        if (warningMessage == null) {
-            System.out.println("Student " + student.getFirstName() +  " " + student.getLastName() + " has no warnings");
+        if (warningMessage.isEmpty()) {
+            System.out.println("Student: " + student.getFirstName() +  " " + student.getLastName() + " has no warnings");
         } else {
-            System.out.println("Student " + student.getFirstName() +  " " + student.getLastName() + " is " + warningMessage);
+            System.out.println("Student: " + student.getFirstName() +  " " + student.getLastName() + " " + warningMessage);
         }
     }
 }

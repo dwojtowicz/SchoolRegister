@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Warning {
 
-    private String warning;
+    private List<String> warning;
 
-    public Warning(String warning) {
+    public Warning(List<String> warning) {
         this.warning = warning;
     }
 }
